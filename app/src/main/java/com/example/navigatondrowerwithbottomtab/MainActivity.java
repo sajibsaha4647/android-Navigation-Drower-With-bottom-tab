@@ -74,8 +74,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-
-
     }
 
 
@@ -102,18 +100,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Fragment fragment;
 
         if(item.getItemId() == R.id.nav_home){
+
             fragment = new OneFragment();
             FragmentManager fragmentManager = this.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.ChangeFrame, fragment,null);
             fragmentTransaction.commit();
-
+            drawerLayout.closeDrawers();
         }else if(item.getItemId() == R.id.nav_share){
             fragment = new TwoFragment();
             FragmentManager fragmentManager1 = this.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction1 = fragmentManager1.beginTransaction();
             fragmentTransaction1.replace(R.id.ChangeFrame, fragment,null);
             fragmentTransaction1.commit();
+            drawerLayout.closeDrawers();
         }else if(item.getItemId() == R.id.nav_send){
             fragment = new ThreeFragment();
             FragmentManager fragmentManager2 = this.getSupportFragmentManager();
@@ -121,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             fragmentTransaction2.replace(R.id.ChangeFrame, fragment,null);
             fragmentTransaction2.addToBackStack(null);
             fragmentTransaction2.commit();
+            drawerLayout.closeDrawers();
         }
 
 
