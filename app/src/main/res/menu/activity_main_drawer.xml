@@ -12,10 +12,6 @@
             android:actionLayout="@layout/fragment_three"
             />
 
-
-
-
-
     <item android:title="Communicate">
         <menu>
             <item

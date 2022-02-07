@@ -39,11 +39,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         navigationView = findViewById(R.id.nav_view);
         bottomNavigationView = findViewById(R.id.bottom_nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-//        bottomNavigationView
+
 
     }
-
-
 
 
     @Override
@@ -62,14 +60,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 FragmentManager fragmentManager = this.getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragmentid, fragment,null);
-                fragmentTransaction.commit();
+                fragmentTransaction.commitAllowingStateLoss();
+
                 break;
             case R.id.nav_share:
                 Fragment fragment1 = new TwoFragment();
                 FragmentManager fragmentManager1 = this.getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction1 = fragmentManager1.beginTransaction();
                 fragmentTransaction1.replace(R.id.fragmentid, fragment1,null);
-                fragmentTransaction1.commit();
+                fragmentTransaction1.commitAllowingStateLoss();
+
                 break;
             case R.id.nav_send:
                 Fragment fragment2 = new ThreeFragment();
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 FragmentTransaction fragmentTransaction2 = fragmentManager2.beginTransaction();
                 fragmentTransaction2.replace(R.id.fragmentid, fragment2,null);
                 fragmentTransaction2.addToBackStack(null);
-                fragmentTransaction2.commit();
+                fragmentTransaction2.commitAllowingStateLoss();
                 break;
             case R.id.page_1:
                 Toast.makeText(MainActivity.this,"warn page bottom 1",Toast.LENGTH_LONG).show();

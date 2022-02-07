@@ -24,32 +24,12 @@
 
     </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/ChangeFrame"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <fragment
-            android:name="com.example.navigatondrowerwithbottomtab.OneFragment"
-            android:id="@+id/fragmentid"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </fragment>
-
-    </FrameLayout>
 
 
 
     <include layout="@layout/content_main" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginRight="@dimen/fab_margin"
-        android:layout_marginBottom="@dimen/fab_bottom_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+
 
 </LinearLayout>
