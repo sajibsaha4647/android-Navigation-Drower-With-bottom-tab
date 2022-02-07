@@ -1,6 +1,7 @@
 package com.example.navigatondrowerwithbottomtab;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -24,9 +25,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private BottomNavigationView bottomNavigationView;
-
     private Fragment fragment;
-
+    public ActionBarDrawerToggle actionBarDrawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,49 +40,89 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bottomNavigationView = findViewById(R.id.bottom_nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        fragment = new OneFragment();
+        FragmentManager fragmentManager = this.getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.ChangeFrame, fragment,null);
+        fragmentTransaction.commit();
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                if(item.getItemId() == R.id.page_1){
+                    fragment = new OneFragment();
+                    FragmentManager fragmentManager = MainActivity.this.getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.ChangeFrame, fragment,null);
+                    fragmentTransaction.commit();
+                }else if(item.getItemId() == R.id.page_2){
+                    fragment = new TwoFragment();
+                    FragmentManager fragmentManager1 = MainActivity.this.getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction1 = fragmentManager1.beginTransaction();
+                    fragmentTransaction1.replace(R.id.ChangeFrame, fragment,null);
+                    fragmentTransaction1.commit();
+                }else if(item.getItemId() == R.id.page_3){
+                    fragment = new ThreeFragment();
+                    FragmentManager fragmentManager2 = MainActivity.this.getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction2 = fragmentManager2.beginTransaction();
+                    fragmentTransaction2.replace(R.id.ChangeFrame, fragment,null);
+                    fragmentTransaction2.addToBackStack(null);
+                    fragmentTransaction2.commit();
+                }
+                return true;
+            }
+        });
+
+
 
     }
+
 
 
     @Override
     public void onClick(View view) {
-        if(!drawerLayout.isDrawerOpen(GravityCompat.START)) drawerLayout.openDrawer(GravityCompat.START);
-        else drawerLayout.closeDrawer(GravityCompat.END);
+        ToggleDrawer();
     }
+
+    public void ToggleDrawer(){
+       try{
+           if(!drawerLayout.isDrawerOpen(GravityCompat.START)) drawerLayout.openDrawer(GravityCompat.START);
+           else drawerLayout.closeDrawer(GravityCompat.END);
+       }catch (Exception e){
+
+       }
+    }
+
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
+        Fragment fragment;
 
-        switch (item.getItemId()){
-            case R.id.nav_home:
-                Fragment fragment = new OneFragment();
-                FragmentManager fragmentManager = this.getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentid, fragment,null);
-                fragmentTransaction.commitAllowingStateLoss();
+        if(item.getItemId() == R.id.nav_home){
+            fragment = new OneFragment();
+            FragmentManager fragmentManager = this.getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.ChangeFrame, fragment,null);
+            fragmentTransaction.commit();
 
-                break;
-            case R.id.nav_share:
-                Fragment fragment1 = new TwoFragment();
-                FragmentManager fragmentManager1 = this.getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction1 = fragmentManager1.beginTransaction();
-                fragmentTransaction1.replace(R.id.fragmentid, fragment1,null);
-                fragmentTransaction1.commitAllowingStateLoss();
-
-                break;
-            case R.id.nav_send:
-                Fragment fragment2 = new ThreeFragment();
-                FragmentManager fragmentManager2 = this.getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction2 = fragmentManager2.beginTransaction();
-                fragmentTransaction2.replace(R.id.fragmentid, fragment2,null);
-                fragmentTransaction2.addToBackStack(null);
-                fragmentTransaction2.commitAllowingStateLoss();
-                break;
-            case R.id.page_1:
-                Toast.makeText(MainActivity.this,"warn page bottom 1",Toast.LENGTH_LONG).show();
-                break;
+        }else if(item.getItemId() == R.id.nav_share){
+            fragment = new TwoFragment();
+            FragmentManager fragmentManager1 = this.getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction1 = fragmentManager1.beginTransaction();
+            fragmentTransaction1.replace(R.id.ChangeFrame, fragment,null);
+            fragmentTransaction1.commit();
+        }else if(item.getItemId() == R.id.nav_send){
+            fragment = new ThreeFragment();
+            FragmentManager fragmentManager2 = this.getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction2 = fragmentManager2.beginTransaction();
+            fragmentTransaction2.replace(R.id.ChangeFrame, fragment,null);
+            fragmentTransaction2.addToBackStack(null);
+            fragmentTransaction2.commit();
         }
+
 
         return true;
     }

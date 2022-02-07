@@ -7,21 +7,14 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/app_bar_main">
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/ChangeFrame"
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="match_parent">
 
-        <fragment
-            android:name="com.example.navigatondrowerwithbottomtab.OneFragment"
-            android:id="@+id/fragmentid"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-        </fragment>
-
-    </LinearLayout>
+    </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_view"
